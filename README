@@ -1,0 +1,63 @@
+...,ron.levin1 // todo
+...,316409572
+
+TODO: explain the API extension from whats mentioned in part 1 instructions. specifically: the resetBall method.
+1. Design Choice for Brick Removal (Section 1.7):
+   - Design Chosen: we used the `CollisionStrategy` pattern to handle brick
+   removal. Each brick has a `CollisionStrategy` that defines what happens when
+   a collision occurs.
+   - Advantages:
+     - Flexibility: Allows different behaviors for different bricks without
+     modifying the brick class.
+     - Extensibility: New collision behaviors can be added easily by creating
+     new `CollisionStrategy` implementations.
+   - Disadvantages:
+     - Complexity: Increases the number of classes and interfaces, which can
+     make the codebase more complex.
+     - Overhead: May introduce slight performance overhead due to the
+     additional abstraction layer.
+
+2. Graphical and Numerical Display of Player’s Number of Lives (Section 1.8):
+   - Implementation: we used a combination of a graphical heart icon and a
+   numerical display to show the player's lives.
+   - Classes Added:
+     - `Heart`: Represents a heart in the game, handles its own collisions and
+     can be removed based on certain conditions.
+     - `BrickerGameManager`: Manages the game logic and state, including the
+     life counter and UI updates.
+   - Roles:
+     - `Heart`: Updates the number of heart icons based on the player's current
+     lives.
+     - `BrickerGameManager`: Manages the numerical display of lives and updates
+     the UI accordingly.
+
+3. Implementation of Special Behaviors (Excluding Double Behavior):
+   - Turbo Mode:
+     - Class: `turboModeStrategy`
+     - Role: Activates turbo mode when a ball collides with a brick.
+   - Extra Life:
+     - Class: `extraLifeStrategy`
+     - Role: Grants an extra life to the player when a ball collides with a
+     brick.
+   - Paddle Expansion:
+     - Class: `extraPaddleStrategy`
+     - Role: Creates an extra paddle when a ball collides with a brick.
+
+4. Implementation of Double Behavior (Section 2.2.5):
+   - Design: we used a `doubleSpecialStrategy` that handles the double behavior
+   by combining two other collision strategies.
+   - Limiting to 3 Behaviors: we used a counter to track the number of active
+   double behaviors and ensured it does not exceed 3.
+   - Classes Added:
+     - `doubleSpecialStrategy`: Implements the double behavior and manages the
+     counter to limit the number of behaviors.
+
+5. Changes to the API in Part 2:
+   - Reason for Changes: The changes were necessary to support the new
+   behaviors and improve the flexibility of the game.
+   - Examples of Changes:
+     - Added new methods to the `BrickerGameManager` class to support different
+     collision behaviors.
+     - Modified the `Ball` and `Brick` classes to use the `CollisionStrategy`
+     interface for handling collisions, allowing for easier extension of
+     collision behaviors.
