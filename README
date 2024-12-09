@@ -1,7 +1,6 @@
 carmi.shaag,ron.levin1
 206882623,316409572
 
-TODO: explain the API extension from whats mentioned in part 1 instructions. specifically: the resetBall method.
 1. Design Choice for Brick Removal (Section 1.7):
    - Design Chosen: we used the second option where only BrickerGameManager can 
    remove other GameObjects.Each brick has a `CollisionStrategy` that defines 
@@ -55,9 +54,12 @@ TODO: explain the API extension from whats mentioned in part 1 instructions. spe
 5. Changes to the API in Part 2:
    - Reason for Changes: The changes were necessary to support the new
    behaviors and improve the flexibility of the game. Changes also allowed us
-   to keep 'open-closed' principle solid throught the project.
+   to keep 'open-closed' principle solid throught the project. i.e, the resetBall
+   method is essential to reset ball after falling from window, and encapsulation
+   reasoning says it should be in Ball class.
    - Examples of Changes:
      - Added new methods to the `BrickerGameManager` class to support different
+      - Added resetBall method to Ball class.
      collision behaviors.
      - Modified the `Ball` and `Brick` classes to use the `CollisionStrategy`
      interface for handling collisions, allowing for easier extension of
